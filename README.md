@@ -4,9 +4,9 @@ This module uses Terraform code that uses the [a EC2 Instance](https://aws.amazo
 a [Nat Instance](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#NATSG) in [AWS](https://aws.amazon.com/). The instance consists in a community made AMI.
 The instance is responsible for manage traffic from other instances or services in a [Private Network](https://en.wikipedia.org/wiki/Private_network), to the internet.
 
-![NAT Instance architecture](https://github.com/hashicorp/terraform-aws-consul/blob/master/_docs/architecture.png?raw=true)
+![NAT Instance architecture](https://github.com/GabSnow24/nat-instance-tf/blob/70d981397dae1fe00168230e0c9c74dba29f0d3a/archtecture-example.jpg?raw=true)
 
-You will need to have a ECS Task, AutoScaling Group or any other service that runs in a private network created.
+You will need to have a ECS Task, AutoScaling Group or any other service that runs in a private network created, in order to use the NAT Instance properly.
 
 ## Quick start
 
@@ -14,8 +14,14 @@ To deploy a Nat Instance:
 
 1. Create your terraform repo in your computer (if doesnt exists).
 1. Install [Terraform](https://www.terraform.io/).
-1. Create a [terraform module] with any name (https://developer.hashicorp.com/terraform/language/modules/syntax) 
-1. Point the source property in module to [Module's GitHub](https://github.com/GabSnow24/nat-instance-tf?ref=v0.0.1)
+1. Create a [terraform module](https://developer.hashicorp.com/terraform/language/modules/syntax) inside your terraform repository
+1. Point the source property in module to [Module's GitHub](https://github.com/GabSnow24/nat-instance-tf) using release tags (recommended), example:
+    ```
+    module "webserver_cluster" {
+      source = "https://github.com/GabSnow24/nat-instance-tf?ref=v0.0.1"
+      [...]
+    }
+    ```
 1. Pass the parameters specified and necessary to run the module. Parameteres are (all of them are mandatory):
     * az (Availability Zone)
     * key_name (The ssh key to access the instance)
