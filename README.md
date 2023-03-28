@@ -18,7 +18,7 @@ To deploy a Nat Instance:
 1. Point the source property in module to [Module's GitHub](https://github.com/GabSnow24/nat-instance-tf) using release tags (recommended), example:
     ```
     module "nat_instance" {
-      source = "https://github.com/GabSnow24/nat-instance-tf?ref=v0.0.1"
+      source = "git::https://github.com/GabSnow24/nat-instance-tf?ref=v0.0.1"
       [...]
     }
     ```
@@ -33,7 +33,7 @@ To deploy a Nat Instance:
         * id (Security group ID)
     ```
     module "nat_instance" {
-      source = "https://github.com/GabSnow24/nat-instance-tf?ref=v0.0.1"
+      source = "git::https://github.com/GabSnow24/nat-instance-tf?ref=v0.0.2"
       instance_data = {
         az = "us-east-1a"
         name = "NAT/BASTION-Prod"
