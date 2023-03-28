@@ -17,7 +17,7 @@ To deploy a Nat Instance:
 1. Create a [terraform module](https://developer.hashicorp.com/terraform/language/modules/syntax) inside your terraform repository
 1. Point the source property in module to [Module's GitHub](https://github.com/GabSnow24/nat-instance-tf) using release tags (recommended), example:
     ```
-    module "webserver_cluster" {
+    module "nat_instance" {
       source = "https://github.com/GabSnow24/nat-instance-tf?ref=v0.0.1"
       [...]
     }
@@ -28,6 +28,16 @@ To deploy a Nat Instance:
     * type (The Type of the EC2 instance)
     * subnet_id (The private subnet to manage traffic from)
     * name (The name of the instance)
+
+    ```
+    module "nat_instancer" {
+      source = "https://github.com/GabSnow24/nat-instance-tf?ref=v0.0.1"
+      az = "us-east-1a"
+      name = "NAT/BASTION-Prod"
+      subnet_id = aws.subnet.public.id
+      type = "t2.micro"
+    }
+    ```
 1. Run `terraform init`.
 1. Run `terraform plan`.
 1. Run `terraform apply`.
