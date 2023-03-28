@@ -23,19 +23,26 @@ To deploy a Nat Instance:
     }
     ```
 1. Pass the parameters specified and necessary to run the module. Parameteres are (all of them are mandatory):
-    * az (Availability Zone)
-    * key_name (The ssh key to access the instance)
-    * type (The Type of the EC2 instance)
-    * subnet_id (The private subnet to manage traffic from)
-    * name (The name of the instance)
-
+    * instance_data (object)
+        * az (Availability Zone)
+        * key_name (The ssh key to access the instance)
+        * type (The Type of the EC2 instance)
+        * subnet_id (The private subnet to manage traffic from)
+        * name (The name of the instance)
+    * security_group (object)
+        * id (Security group ID)
     ```
     module "nat_instance" {
       source = "https://github.com/GabSnow24/nat-instance-tf?ref=v0.0.1"
-      az = "us-east-1a"
-      name = "NAT/BASTION-Prod"
-      subnet_id = aws.subnet.public.id
-      type = "t2.micro"
+      instance_data = {
+        az = "us-east-1a"
+        name = "NAT/BASTION-Prod"
+        subnet_id = aws.subnet.public.id
+        type = "t2.micro"
+      }
+      security_group = {
+        id = aws_security_group.web.id
+      }
     }
     ```
 1. Run `terraform init`.
