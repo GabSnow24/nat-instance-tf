@@ -30,7 +30,7 @@ To deploy a Nat Instance:
     * name (The name of the instance)
 
     ```
-    module "nat_instancer" {
+    module "nat_instance" {
       source = "https://github.com/GabSnow24/nat-instance-tf?ref=v0.0.1"
       az = "us-east-1a"
       name = "NAT/BASTION-Prod"
